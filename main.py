@@ -135,4 +135,12 @@ test1.print_tag()
 '''
 
 
+# Python 中允许使用类名直接调用实例方法，但必须手动为该方法的第一个 self 参数传递参数，这种调用方法的方式被称为“非绑定方法”。
+"""
+class CLanguage:
+    def info(self):
+        print(self,"正在学 Python")
+#通过类名直接调用实例方法
+CLanguage.info("zhangsan")
+"""
 
