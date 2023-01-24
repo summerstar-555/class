@@ -144,3 +144,16 @@ class CLanguage:
 CLanguage.info("zhangsan")
 """
 
+
+# 使用类时让它自动调用方法
+'''
+class Test:
+
+    def __init__(self, arg1):
+        self.a = arg1
+        self.count()        # 可以在init这个函数内调用方法
+    def count(self):
+        print(self.a + 1)
+
+test = Test(1)
+'''
