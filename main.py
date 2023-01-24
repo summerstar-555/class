@@ -84,7 +84,7 @@ class OldPho:
 class NewPho(OldPho):  # 继承旧手机的东西 / 单继承
     face_id = True
 
-    def call_by_5g(self):
+    def call_by_5g(self):   # 在原有的方法上进行修改
         print("2022最新5g通话")
 """
 
@@ -110,7 +110,7 @@ class NFCReader:
         print("NFC写卡")
         
 
-class NewPho(OldPho, NFCReader):  # 继承旧手机的东西 / 单继承
+class NewPho(OldPho, NFCReader):  # 继承两个父类，可以使用其中的方法和变量
     pass    # 语法要求必须写什么上去。pass用来补上，没有实际用处
 """
 
@@ -145,7 +145,7 @@ CLanguage.info("zhangsan")
 """
 
 
-# 使用类时让它自动调用方法
+# 使用类时让它自动调用方法，利用__init__调用类就自动运行的特点
 '''
 class Test:
 
