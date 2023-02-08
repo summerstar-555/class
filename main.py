@@ -70,7 +70,6 @@ phe = Phone()
 phe.call_by_5g()
 """
 
-
 # 继承
 """
 class OldPho:
@@ -87,7 +86,6 @@ class NewPho(OldPho):  # 继承旧手机的东西 / 单继承
     def call_by_5g(self):   # 在原有的方法上进行修改
         print("2022最新5g通话")
 """
-
 
 # 多继承
 """
@@ -114,7 +112,6 @@ class NewPho(OldPho, NFCReader):  # 继承两个父类，可以使用其中的�
     pass    # 语法要求必须写什么上去。pass用来补上，没有实际用处
 """
 
-
 # 在使用多个函数，而多个函数的形参一致时，这种场景就很适合类
 '''
 class DownloadPicture:
@@ -134,7 +131,6 @@ test1 = DownloadPicture('4k')
 test1.print_tag()
 '''
 
-
 # Python 中允许使用类名直接调用实例方法，但必须手动为该方法的第一个 self 参数传递参数，这种调用方法的方式被称为“非绑定方法”。
 """
 class CLanguage:
@@ -143,7 +139,6 @@ class CLanguage:
 #通过类名直接调用实例方法
 CLanguage.info("zhangsan")
 """
-
 
 # 使用类时让它自动调用方法，利用__init__调用类就自动运行的特点
 '''
@@ -157,3 +152,25 @@ class Test:
 
 test = Test(1)
 '''
+
+
+class FooParent:
+    def __init__(self, message):
+        self.message = message
+        print('I \'m parent')
+        self.bar()
+
+    def bar(self):
+        if not self.message is None:
+            print(self.message)
+
+
+class FooChild(FooParent):
+    def __init__(self):
+        super().__init__('child')
+        print('I \'m child')  # 不会对父类语句进行修改
+    #     def __init__(self):
+    #         print('I \'m child')
+
+
+footparent = FooChild()
