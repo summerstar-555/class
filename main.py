@@ -153,24 +153,92 @@ class Test:
 test = Test(1)
 '''
 
-
-class FooParent:
-    def __init__(self, message):
-        self.message = message
-        print('I \'m parent')
-        self.bar()
-
-    def bar(self):
-        if not self.message is None:
-            print(self.message)
-
-
-class FooChild(FooParent):
+# 单继承下super只是用来调用父类的方法
+"""
+class A:
     def __init__(self):
-        super().__init__('child')
-        print('I \'m child')  # 不会对父类语句进行修改
-    #     def __init__(self):
-    #         print('I \'m child')
+        self.n = 2
+
+    def add(self, m):
+        print('self is {0} @A.add'.format(self))
+        self.n += m     # 将m的值传入后再将n加上
+        # 此时self是子类，子类的值就会受到影响
 
 
-footparent = FooChild()
+class B(A):
+    def __init__(self):
+        self.n = 3
+
+    def add(self, m):
+        print('self is {0} @B.add'.format(self))        # 目的就是看谁调用了add方法
+        # 这里只是调用父类的方法，不会触发init方法
+        super().add(m)    # 调用父类方法，这里可以把super理解为父类自身
+        self.n += 3
+
+# super().add(m) 调用父类方法 def add(self, m) 时, 此时父类中 self 并不是父类的实例而是子类的实例, 所以 b.add(2) 之后的结果是5而不是4
+
+b = B()
+b.add(2)
+print(b.n)
+"""
+
+# 仅用类的方法也不会调用init方法
+"""
+class A:
+    def __init__(self):
+        print('init')
+
+    def add(self, m):
+        print(self)
+        print('add', m)
+
+
+A.add(None, 5)
+"""
+
+
+# 多继承
+"""
+class A:
+    def __init__(self):
+        self.n = 2
+
+    def add(self, m):
+        print('self is {0} @A.add'.format(self))
+        self.n += m
+
+
+class B(A):
+    def __init__(self):
+        self.n = 3
+
+    def add(self, m):
+        print('self is {0} @B.add'.format(self))
+        super().add(m)
+        self.n += 3
+
+
+class C(A):
+    def __init__(self):
+        self.n = 4
+
+    def add(self, m):
+        print('self is {0} @C.add'.format(self))
+        super().add(m)
+        self.n += 4
+
+
+class D(B, C):
+    def __init__(self):
+        self.n = 5
+
+    def add(self, m):
+        print('self is {0} @D.add'.format(self))
+        super().add(m)
+        self.n += 5
+
+
+d = D()
+d.add(2)
+print(d.n)
+"""
